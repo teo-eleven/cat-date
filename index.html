@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Vrei să ieși cu mine? 🐾💖</title>
+  
+  <!-- Romantic & Soft Aesthetic Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Ambient Floating Background Hearts -->
+  <div class="ambient-bg" id="ambient-hearts"></div>
+
+  <!-- Main Application Wrapper -->
+  <main class="app-container">
+    
+    <!-- Progress Indicator Dots -->
+    <div class="progress-paws" id="progress-indicator">
+      <div class="paw-dot active" id="dot-1"></div>
+      <div class="paw-dot" id="dot-2"></div>
+      <div class="paw-dot" id="dot-3"></div>
+      <div class="paw-dot" id="dot-4"></div>
+    </div>
+
+    <!-- The Romantic Card -->
+    <div class="romantic-card" id="main-card">
+
+      <!-- STEP 1: The Big Question -->
+      <section class="step-section" id="step-1">
+        <div class="cat-avatar-container" id="hero-cat">
+          <!-- Dynamic Cat SVG -->
+        </div>
+
+        <h1 class="card-title" id="title-step1">Vrei să ieși cu mine? 🐾💖</h1>
+        <p class="card-subtitle" id="sub-step1">Promit că o să fie o zi minunată și plină de dragoste!</p>
+
+        <div class="buttons-area" id="buttons-area">
+          <button class="btn-choice btn-yes" id="btn-yes" type="button">
+            <span>DA! 💖</span>
+          </button>
+          
+          <button class="btn-choice btn-no" id="btn-no" type="button">
+            <span id="txt-btn-no">Nu 😿</span>
+          </button>
+        </div>
+
+        <div class="funny-feedback" id="funny-feedback"></div>
+      </section>
+
+      <!-- STEP 2: Pick a Date -->
+      <section class="step-section" id="step-2" style="display: none; width: 100%;">
+        <div class="cat-avatar-container" style="width: 86px; height: 86px; margin-bottom: 12px;" id="calendar-cat">
+          <!-- Happy cat -->
+        </div>
+
+        <h2 class="card-title">Când ne vedem? 📅🐾</h2>
+        <p class="card-subtitle">Alege ziua noastră specială din calendar</p>
+
+        <div class="calendar-card">
+          <div class="cal-nav-bar">
+            <button class="cal-arrow-btn" id="cal-prev" type="button">&lt;</button>
+            <span class="cal-month-label" id="cal-month-title">SEPTEMBRIE 2026</span>
+            <button class="cal-arrow-btn" id="cal-next" type="button">&gt;</button>
+          </div>
+
+          <div class="cal-weekdays-row">
+            <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+          </div>
+
+          <div class="cal-days-grid" id="cal-grid">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <div class="selected-date-pill" id="selected-date-label">
+          Alege o zi din calendar 🐾
+        </div>
+
+        <button class="btn-primary-action" id="btn-to-step3" type="button">
+          <span>Continuă spre activități ➔</span>
+        </button>
+      </section>
+
+      <!-- STEP 3: Choose Activities -->
+      <section class="step-section" id="step-3" style="display: none; width: 100%;">
+        <h2 class="card-title">Ce facem la date? ✨</h2>
+        <p class="card-subtitle">Alege una sau mai multe activități</p>
+
+        <div class="activities-grid" id="activities-grid">
+          <!-- Populated via JS -->
+        </div>
+
+        <div class="custom-wish-container">
+          <input type="text" class="aesthetic-input" id="custom-wish-input" placeholder="Ai vreo dorință specială? (opțional) 🍨" maxlength="60">
+        </div>
+
+        <button class="btn-primary-action" id="btn-to-step4" type="button">
+          <span>Confirmă întâlnirea! 🐾💌</span>
+        </button>
+      </section>
+
+      <!-- STEP 4: Official Date Ticket & Send to Boyfriend -->
+      <section class="step-section" id="step-4" style="display: none; width: 100%;">
+        <h2 class="card-title">E oficial! It's a date! 🎟️💖</h2>
+        <p class="card-subtitle">Biletul nostru aprobat cu iubire și lăbuțe</p>
+
+        <div class="ticket-wrapper" id="ticket-view">
+          <div class="ticket-header-row">
+            <span class="ticket-header-title">🐾 CAT PASS • DATE VIP</span>
+            <span class="ticket-badge">CONFIRMAT 💖</span>
+          </div>
+
+          <div class="ticket-info-list">
+            <div class="ticket-item">
+              <span class="ticket-item-label">Data aleasă:</span>
+              <span class="ticket-item-value" id="final-date">-</span>
+            </div>
+
+            <div class="ticket-item">
+              <span class="ticket-item-label">Ce vom face:</span>
+              <span class="ticket-item-value" id="final-activities">-</span>
+            </div>
+
+            <div class="ticket-item" id="final-wish-container" style="display: none;">
+              <span class="ticket-item-label">Dorință specială:</span>
+              <span class="ticket-item-value" id="final-wish">-</span>
+            </div>
+          </div>
+
+          <div class="ticket-couple-container" id="ticket-couple-cats">
+            <!-- Snuggling cats -->
+          </div>
+        </div>
+
+        <div class="ticket-actions-group">
+          <button class="btn-whatsapp-send" id="btn-send-whatsapp" type="button">
+            <span>Trimite-i răspunsul pe WhatsApp 📲</span>
+          </button>
+          
+          <button class="btn-secondary-action" id="btn-save-image" type="button">
+            <span>📸 Salvează biletul ca poză</span>
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <script src="cats.js"></script>
+  <script src="sound.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

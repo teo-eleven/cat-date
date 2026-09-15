@@ -1,0 +1,711 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800;900&display=swap');
+
+:root {
+  --bg-gradient: linear-gradient(145deg, #FFE8F0 0%, #F5E6FF 50%, #FFEBF2 100%);
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-border: #FFD4E2;
+  --primary-pink: #FF4D82;
+  --primary-pink-hover: #FF336E;
+  --primary-gradient: linear-gradient(135deg, #FF6090 0%, #FF336E 100%);
+  --secondary-bg: #FFF0F5;
+  --secondary-border: #FFD1E1;
+  --text-main: #4A283B;
+  --text-muted: #8E6078;
+  --text-light: #B88CA3;
+  --shadow-soft: 0 16px 36px rgba(255, 77, 130, 0.12), 0 4px 12px rgba(0, 0, 0, 0.03);
+  --shadow-btn: 0 8px 20px rgba(255, 51, 110, 0.3);
+  --radius-card: 26px;
+  --radius-btn: 9999px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-main);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+/* Subtle Ambient Background Floating Hearts */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  color: rgba(255, 130, 170, 0.35);
+  font-size: 16px;
+  animation: floatHeart 12s linear infinite;
+  user-select: none;
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(105vh) scale(0.8) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.8; }
+  100% { transform: translateY(-40px) scale(1.15) rotate(15deg); opacity: 0; }
+}
+
+/* Top Progress Dots */
+.progress-paws {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.paw-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FFD4E2;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.paw-dot.active {
+  width: 24px;
+  border-radius: 12px;
+  background: var(--primary-pink);
+  box-shadow: 0 2px 8px rgba(255, 77, 130, 0.4);
+}
+
+/* Main Aesthetic Card Container */
+.app-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 440px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.romantic-card {
+  width: 100%;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+  transition: min-height 0.3s ease;
+}
+
+/* Hero Cat Illustration Frame */
+.cat-avatar-container {
+  width: 124px;
+  height: 124px;
+  background: radial-gradient(circle, #FFEBF2 0%, #FFF5F8 100%);
+  border: 3px solid #FFE0EB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px auto;
+  box-shadow: 0 8px 20px rgba(255, 120, 160, 0.15);
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cat-avatar-container:hover {
+  transform: scale(1.05);
+}
+
+.cat-svg {
+  width: 88%;
+  height: 88%;
+  overflow: visible;
+}
+
+/* Animations */
+.anim-tears {
+  animation: cryingLoop 0.7s infinite alternate ease-in-out;
+}
+
+@keyframes cryingLoop {
+  0% { transform: translateY(0); opacity: 0.8; }
+  100% { transform: translateY(4px); opacity: 1; }
+}
+
+.anim-wave-paw {
+  transform-origin: 88px 50px;
+  animation: wavePawAnim 1.2s infinite ease-in-out;
+}
+
+@keyframes wavePawAnim {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-22deg); }
+}
+
+.anim-float-heart {
+  animation: floatCoupleHeart 1.8s infinite alternate ease-in-out;
+}
+
+@keyframes floatCoupleHeart {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-4px) scale(1.08); }
+}
+
+/* Typography */
+.card-title {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-size: 23px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.35;
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+/* Step 1: Buttons Area */
+.buttons-area {
+  position: relative;
+  width: 100%;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.btn-choice {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  outline: none;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, background 0.2s;
+  user-select: none;
+}
+
+.btn-choice * {
+  pointer-events: none;
+}
+
+.btn-yes {
+  background: var(--primary-gradient);
+  color: #ffffff;
+  font-size: 18px;
+  padding: 16px 36px;
+  box-shadow: var(--shadow-btn);
+  z-index: 20;
+  animation: pulseGentle 2s infinite ease-in-out;
+}
+
+.btn-yes:hover {
+  background: linear-gradient(135deg, #FF6FA0 0%, #FF3D77 100%);
+  box-shadow: 0 10px 24px rgba(255, 51, 110, 0.4);
+}
+
+.btn-yes:active {
+  transform: scale(0.96) !important;
+}
+
+@keyframes pulseGentle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.btn-no {
+  background: var(--secondary-bg);
+  color: #8C5572;
+  border: 1.5px solid var(--secondary-border);
+  font-size: 15px;
+  padding: 14px 24px;
+  z-index: 25;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-no:hover {
+  background: #FFE4EE;
+  color: var(--primary-pink);
+}
+
+/* Disappear poof animation for the 5th try */
+.btn-no.disappearing {
+  animation: poofAway 0.4s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes poofAway {
+  0% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.3) rotate(15deg); opacity: 0.6; filter: blur(2px); }
+  100% { transform: scale(0) rotate(-20deg); opacity: 0; pointer-events: none; display: none; }
+}
+
+/* Comic cute tooltip message under the cat */
+.funny-feedback {
+  min-height: 24px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary-pink);
+  margin-top: 10px;
+  transition: all 0.2s ease;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Step 2: Calendar Date Picker */
+.calendar-card {
+  width: 100%;
+  background: #FFF9FB;
+  border: 1.5px solid #FFD9E5;
+  border-radius: 20px;
+  padding: 16px 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 14px rgba(255, 120, 160, 0.06);
+}
+
+.cal-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 0 6px;
+}
+
+.cal-month-label {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.cal-arrow-btn {
+  background: #ffffff;
+  border: 1px solid #FFD4E2;
+  color: var(--text-main);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  transition: all 0.15s ease;
+}
+
+.cal-arrow-btn:hover {
+  background: #FFE8F0;
+  border-color: var(--primary-pink);
+  color: var(--primary-pink);
+}
+
+.cal-weekdays-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.cal-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.cal-day-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: var(--text-main);
+  position: relative;
+}
+
+.cal-day-cell:hover:not(.disabled) {
+  background: #FFE8F0;
+  color: var(--primary-pink);
+  transform: scale(1.1);
+}
+
+.cal-day-cell.selected {
+  background: var(--primary-gradient);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 60, 110, 0.35);
+  transform: scale(1.08);
+}
+
+.cal-day-cell.selected::after {
+  content: '🐾';
+  position: absolute;
+  bottom: -4px;
+  right: -2px;
+  font-size: 9px;
+}
+
+.cal-day-cell.disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.cal-day-cell.is-today {
+  border: 1.5px solid #FF85A2;
+}
+
+.selected-date-pill {
+  font-size: 13px;
+  font-weight: 700;
+  background: #FFF0F5;
+  color: var(--primary-pink);
+  border: 1.5px solid #FFD4E2;
+  border-radius: 9999px;
+  padding: 8px 18px;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Primary Action Buttons */
+.btn-primary-action {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  background: var(--primary-gradient);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-btn);
+  padding: 15px 32px;
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 320px;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.btn-primary-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(255, 51, 110, 0.38);
+}
+
+.btn-primary-action:active {
+  transform: translateY(1px);
+}
+
+/* Step 3: Activities Grid */
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.activity-card {
+  background: #FFF9FB;
+  border: 2px solid #FFDCE7;
+  border-radius: 18px;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.activity-card:hover {
+  background: #FFEBF2;
+  border-color: #FFB3CA;
+  transform: translateY(-2px);
+}
+
+.activity-card.selected {
+  background: #FFE8F0;
+  border-color: var(--primary-pink);
+  box-shadow: 0 6px 16px rgba(255, 77, 130, 0.18);
+  transform: scale(1.02);
+}
+
+.activity-card.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: var(--primary-pink);
+  color: #ffffff;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity-icon {
+  font-size: 26px;
+  margin-bottom: 2px;
+}
+
+.activity-title {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+
+.activity-desc {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+/* Custom Wish Input */
+.custom-wish-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.aesthetic-input {
+  width: 100%;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 16px;
+  background: #FFF9FB;
+  border: 1.5px solid #FFD9E5;
+  border-radius: 14px;
+  color: var(--text-main);
+  outline: none;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.aesthetic-input:focus {
+  border-color: var(--primary-pink);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 77, 130, 0.12);
+}
+
+.aesthetic-input::placeholder {
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* Step 4: Final Official Date Pass */
+.ticket-wrapper {
+  width: 100%;
+  background: #FFFFFF;
+  border: 2px dashed #FF85A2;
+  border-radius: 20px;
+  padding: 20px 16px;
+  box-shadow: 0 8px 24px rgba(255, 120, 160, 0.08);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.ticket-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid #FFE4ED;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.ticket-header-title {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-pink);
+}
+
+.ticket-badge {
+  font-size: 10px;
+  font-weight: 800;
+  background: #E8F8EE;
+  color: #1E8E3E;
+  border: 1px solid #A8DAB5;
+  padding: 4px 8px;
+  border-radius: 8px;
+  letter-spacing: 0.2px;
+}
+
+.ticket-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.ticket-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ticket-item-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ticket-item-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+  background: #FFF4F8;
+  padding: 8px 12px;
+  border-radius: 10px;
+  line-height: 1.4;
+}
+
+.ticket-couple-container {
+  width: 140px;
+  height: 90px;
+  margin: 4px auto 8px auto;
+}
+
+/* Action Buttons for Ticket */
+.ticket-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.btn-whatsapp-send {
+  background: linear-gradient(135deg, #25D366 0%, #1EBE5D 100%);
+  color: #ffffff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  border: none;
+  border-radius: var(--radius-btn);
+  padding: 16px 24px;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.btn-whatsapp-send:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
+}
+
+.btn-secondary-action {
+  background: transparent;
+  color: var(--text-muted);
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.15s;
+}
+
+.btn-secondary-action:hover {
+  color: var(--primary-pink);
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Mobile responsive optimization */
+@media (max-width: 480px) {
+  .app-container {
+    padding: 12px;
+  }
+  .romantic-card {
+    padding: 24px 16px;
+    border-radius: 22px;
+  }
+  .card-title {
+    font-size: 21px;
+  }
+  .cat-avatar-container {
+    width: 112px;
+    height: 112px;
+  }
+  .btn-yes {
+    padding: 14px 28px;
+    font-size: 17px;
+  }
+  .btn-no {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+  .activity-card {
+    padding: 12px 8px;
+  }
+}
